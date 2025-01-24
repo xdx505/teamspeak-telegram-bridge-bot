@@ -22,9 +22,4 @@ public class TS3ListenerImpl extends TS3EventAdapter {
             userService.notifyUserJoin(e.getClientId(), e.getClientNickname());
         }
     }
-
-    @Override
-    public void onClientMoved(ClientMovedEvent e) {
-        super.onClientMoved(e);
-    }
 }
