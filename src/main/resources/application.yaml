@@ -1,0 +1,25 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  main:
+    web-application-type: none
+
+
+teamspeak:
+  query-admin-login: ${TS_ADMIN_LOGIN}
+  query-admin-password: ${TS_ADMIN_PASSWORD}
+  bot-name: ${TS_BOT_NAME}
+  server-host: ${TS_SERVER_HOST}
+  server-port: ${TS_SERVER_PORT}
+  message-timeout-in-minutes: ${TS_MESSAGE_TIMEOUT_IN_MINUTES}
+
+tg:
+  token: ${TG_BOT_TOKEN}
+  chat-ids: ${TG_CHAT_IDS}
+  message:
+    server-info: 'Адрес сервера:  ```ts.xdx505.ru```  [Скачать Teamspeak клиент](https://www.teamspeak.com/en/downloads/)'
+    user-joined: 'Пользователь *%nickname%* присоединился к серверу' # %nickname% - will be replaced with user's nickname
+
+logging:
+  file:
+    path: logs
