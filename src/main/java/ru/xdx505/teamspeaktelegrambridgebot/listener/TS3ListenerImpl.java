@@ -18,7 +18,7 @@ public class TS3ListenerImpl extends TS3EventAdapter {
 
     @Override
     public void onClientJoin(ClientJoinEvent e) {
-        if (!e.getClientNickname().equals("serveradmin")) {
+        if (!e.getClientNickname().startsWith("serveradmin")) {
             userService.notifyUserJoin(e.getClientId(), e.getClientNickname());
         }
     }
