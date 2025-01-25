@@ -18,7 +18,7 @@ tg:
   chat-ids: ${TG_CHAT_IDS}
   message:
     server-info: 'Адрес сервера:  ```ts.xdx505.ru```  [Скачать Teamspeak клиент](https://www.teamspeak.com/en/downloads/)'
-    user-joined: 'Пользователь *%nickname%* присоединился к серверу' # %nickname% - will be replaced with user's nickname
+    user-joined: 'Пользователь **%nickname%** присоединился к Teamspeak каналу' # %nickname% - will be replaced with user's nickname
 
 logging:
   file:

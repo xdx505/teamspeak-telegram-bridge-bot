@@ -27,6 +27,7 @@ public class TGNotifyServiceImpl implements TGNotifyService {
                 telegramClient.execute(SendMessage.builder()
                         .chatId(chatId)
                         .text(message)
+                        .parseMode("MarkdownV2")
                         .build()
                 );
             } catch (TelegramApiException e) {
