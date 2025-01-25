@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.generics.TelegramClient;
 @Configuration
 public class TGConfiguration {
     @Bean
-    public TelegramClient telegramClient(TGProperties properties) {
-        return new OkHttpTelegramClient(properties.getToken());
+    public TelegramClient telegramClient(TGProperties tgProperties) {
+        return new OkHttpTelegramClient(tgProperties.getToken());
     }
 }

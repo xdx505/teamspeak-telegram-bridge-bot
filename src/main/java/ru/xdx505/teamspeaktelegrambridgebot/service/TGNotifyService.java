@@ -1,5 +1,6 @@
 package ru.xdx505.teamspeaktelegrambridgebot.service;
 
 public interface TGNotifyService {
-    void sendMessage(String nickname);
+    void sendUserJoinedMessage(String nickname);
+    void sendInfoMessage(long chatId);
 }

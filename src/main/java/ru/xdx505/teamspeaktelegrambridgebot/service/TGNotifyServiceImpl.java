@@ -1,5 +1,6 @@
 package ru.xdx505.teamspeaktelegrambridgebot.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,20 +10,15 @@ import ru.xdx505.teamspeaktelegrambridgebot.config.TGProperties;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class TGNotifyServiceImpl implements TGNotifyService {
     private final TelegramClient telegramClient;
-    private final TGProperties properties;
-
-    public TGNotifyServiceImpl(TelegramClient telegramClient, TGProperties properties) {
-        this.telegramClient = telegramClient;
-        this.properties = properties;
-    }
+    private final TGProperties tgProperties;
 
     @Override
-    public void sendMessage(String nickname) {
-        String message = properties.getUserJoinedMessage().replaceAll("%nickname%", nickname);
-
-        properties.getChatIds().forEach(chatId -> {
+    public void sendUserJoinedMessage(String nickname) {
+        String message = tgProperties.getUserJoinedMessage().replaceAll("%nickname%", nickname);
+        tgProperties.getChatIds().forEach(chatId -> {
             try {
                 telegramClient.execute(SendMessage.builder()
                         .chatId(chatId)
@@ -34,5 +30,18 @@ public class TGNotifyServiceImpl implements TGNotifyService {
                 log.error(e.getMessage());
             }
         });
+    }
+
+    @Override
+    public void sendInfoMessage(long chatId) {
+        try {
+            telegramClient.execute(SendMessage.builder()
+                    .chatId(chatId)
+                    .text(tgProperties.getServerInfoMessage())
+                    .parseMode("MarkdownV2")
+                    .build());
+        } catch (TelegramApiException e) {
+            log.error(e.getMessage());
+        }
     }
 }

@@ -1,9 +1,11 @@
 package ru.xdx505.teamspeaktelegrambridgebot.config;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -27,5 +29,12 @@ public class TGProperties {
     public static class Message {
         private String serverInfo;
         private String userJoined;
+    }
+
+    @PostConstruct
+    private void initPropertiesList() {
+        if (chatIds == null) {
+            chatIds = new HashSet<>();
+        }
     }
 }

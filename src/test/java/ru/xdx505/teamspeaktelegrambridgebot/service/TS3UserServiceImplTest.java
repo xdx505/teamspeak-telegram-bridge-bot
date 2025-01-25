@@ -42,7 +42,7 @@ class TS3UserServiceImplTest {
     void testNewUser_shouldSendMessage() {
         when(repository.getUser(anyString())).thenReturn(null);
         service.notifyUserJoin(1, "nick");
-        verify(notifyService, times(1)).sendMessage(anyString());
+        verify(notifyService, times(1)).sendUserJoinedMessage(anyString());
     }
 
     @Test
@@ -55,7 +55,7 @@ class TS3UserServiceImplTest {
         when(repository.getUser(anyString())).thenReturn(user);
 
         service.notifyUserJoin(1, "nick");
-        verify(notifyService, times(1)).sendMessage(anyString());
+        verify(notifyService, times(1)).sendUserJoinedMessage(anyString());
     }
 
     @Test
@@ -68,6 +68,6 @@ class TS3UserServiceImplTest {
         when(repository.getUser(anyString())).thenReturn(user);
 
         service.notifyUserJoin(1, "nick");
-        verify(notifyService, times(0)).sendMessage(anyString());
+        verify(notifyService, times(0)).sendUserJoinedMessage(anyString());
     }
 }
